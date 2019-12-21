@@ -4,8 +4,8 @@ from django.template import loader
 from rest_framework import viewsets
 
 from django.contrib.auth.models import User
-from blogging.models import Post
-from blogging.serializers import PostSerializer, UserSerializer
+from blogging.models import Post, Category
+from blogging.serializers import PostSerializer, UserSerializer, CategorySerializer
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
@@ -45,3 +45,10 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     queryset = Post.objects.all().order_by("created_date")
     serializer_class = PostSerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows posts to be viewed or edited.
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
